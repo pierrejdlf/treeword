@@ -9,7 +9,7 @@ content is represented as a nested tree, containing text or images
 at the moment, you'll need a json file
 a typical tree looks like :
 
-  [{	"id":0,
+	[{	"id":0,
 		"content":"un texte",
 		"size":18,
 		"children":[{	"id":1,
