@@ -10,9 +10,6 @@ var loadTreemap	= function(options) {
 	var unikid 			= options['id'];
 	var tree 			= options['tree'];
 	var fontfamily 		= options['font-family'] || 'Arial' ;
-	var background_dad 		= options['background-dad'] || "rgba(220,220,220,0.2)";
-	var background_dad_over = options['background-dad-over'] || "rgba(250,250,250,0.5)";
-	var background_son 		= options['background-son'] || "rgba(200,200,250,0.2)";
 	var data = {'content':'root','children':tree};
 	
 	var w = $("#"+unikid).width() || 640 ,
@@ -79,11 +76,11 @@ var loadTreemap	= function(options) {
 		cont = cont.replace(/<.+>/," ");
 		var words = cont.split(" ");
 		var maxword = words.sort(function(a,b){return b.length-a.length;})[0];
-		//console.log("===== max word: "+d.content+" ||| "+maxword);
+		//console.log("===== max word: ["+maxword+"] FROM: "+d.content);
 		$("#"+unikid+"_fonttest div").html(maxword);
-		$("#"+unikid+"_fonttest").css({"width":d.dx,"height":d.dx,"padding":padd+"px"}).bigtext();
+		$("#"+unikid+"_fonttest").css({"width":d.dx-2*padd,"height":d.dx,"padding":padd+"px"}).bigtext();
 		var bf = $("#"+unikid+" .bigtext-line0").css('font-size').replace("px","");
-		//console.log("font:"+bf);
+		//console.log("===== bigtextsize:"+bf);
 		
 		// if more then keep like biggest word alone in line
 		if(ss>bf) ss=bf;
@@ -91,7 +88,7 @@ var loadTreemap	= function(options) {
 		
 		// test if overflow-y ... thinking of padding:8px
 		var height = d.dy;
-		var innerHeight = elm.scrollHeight-margforinner-(2*padd);
+		var innerHeight = elm.scrollHeight-margforinner+padd;
 		//console.log("====== checking:"+height+" in:"+innerHeight);
 		var cc = 0;
 		while(innerHeight > height) {
@@ -99,10 +96,10 @@ var loadTreemap	= function(options) {
 			var size = d3.select(elm).style("font-size").replace("px","");
 			var dec = Math.max(2,dif/50);
 			size = size - dec;
-			console.log(d.content+" dif:"+dif+" (dec:"+dec+") (fs:"+size+")");
+			//console.log(d.content+" dif:"+dif+" (dec:"+dec+") (fs:"+size+")");
 			d3.select(elm).style("font-size", size+"px");
-			innerHeight = elm.scrollHeight-margforinner-(2*padd);
-			console.log(height+" "+innerHeight);
+			innerHeight = elm.scrollHeight-margforinner+padd;
+			//console.log(height+" "+innerHeight);
 			cc+=1;
 			if(size<2) break;
 		}
@@ -160,10 +157,7 @@ var loadTreemap	= function(options) {
 		.style("left", function(d) { return mezoom.translate()[0]+d.x+"px"; })
 		.style("top", function(d) { return mezoom.translate()[1]+d.y+"px"; })
 		.style("z-index", function(d) {return d.depth==0 ? 0 : 1000-d.depth;})
-		//.style('background', function(d) { return d.children ? background_dad : background_son ;})
-		//.on('mouseover',function(d){ d3.select(this).style('background', function(d) { return d.children ? background_dad_over : background_son ;}); })
 		.on('mouseout',function(d){
-			//d3.select(this).style('background', function(d) { return d.children ? background_dad : background_son ;});
 /*
 			// reshow last level
 			console.log(d);

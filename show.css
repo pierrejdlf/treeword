@@ -6,6 +6,18 @@
 	position:absolute;
 	overflow:hidden;
 }
+/* default values that can be overidden using css */
+.boxnode.dad {
+	background: rgba(220,220,220,0.2);
+}
+.boxnode.dad:hover {
+	background: rgba(250,250,250,0.5);
+}
+.boxnode.son {
+	background: rgba(200,200,250,0.2);
+}
+
+
 .boximg {
 	padding:0px;
 	pointer-events:none;
