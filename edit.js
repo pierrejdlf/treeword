@@ -26,7 +26,7 @@ var initTreeword = function() {
 		});	
 	};
 
-	var gett = $.get('upload/saved_'+page+'.htm', function(data) {
+	var gett = $.get('upload/saved_'+page+'.json', function(data) {
 		loadIntoPage($.parseJSON(data));
 	});
 	gett.error( function() {

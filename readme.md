@@ -19,11 +19,11 @@ the content is represented as a nested tree, containing text or images. you'll n
 
 each element will be represented as a clickable div (nodebox)
 
-## editing: edit.html
+## edit.html
 
 display a json tree file as a nested editable tree, using the formidable jQuery.nestable plugin
 
-## displaying: show.html
+## show.html
 
 display a json tree file
 
