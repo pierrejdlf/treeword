@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+		<link type="text/css" rel="stylesheet" href="show.css"/>
+		<link href='http://fonts.googleapis.com/css?family=Domine' rel='stylesheet' type='text/css'>
+		<style type="text/css">
+			.atree {
+				width:32%;
+				height:250px;
+				float:left;
+				margin:4px;
+			}
+		</style>
+		<script type="text/javascript" src="lib/d3.v2.min.js"></script>
+		<script type="text/javascript" src="lib/jquery.1.7.2.min.js"></script>
+		<script type="text/javascript" src="lib/bigtext.js"></script>
+		<script type="text/javascript" src="show.js"></script>
+		<script type="text/javascript">			
+			$(document).ready(function(){
+				for(var i=0;i<=15;i=i+1) {
+					var divid = 't_'+i;
+					var filepath = 'upload/saved_'+i+'.htm';
+					d3.select("#here").append("div").attr({'id':divid,'class':'atree'});
+					treeword_build({
+						'id':					divid,
+						'file':					filepath,
+						'border':				"none",
+						'font-family':			"Domine",
+						'background-dad':		"rgba(30,150,30,0.2)",
+						'background-dad-over':	"rgba(40,180,40,0.5)",
+						'background-son':		"rgba(200,80,80,0.2)",
+					});
+				};
+			});	
+		</script>
+	</head>
+	<body>
+		<div id="here">
+			<!- ................................................. -->
+		</div>
+	</body>
+</html>

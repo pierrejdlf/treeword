@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+		<link type="text/css" rel="stylesheet" href="show.css"/>
+		<link href='http://fonts.googleapis.com/css?family=Domine' rel='stylesheet' type='text/css'>
+		<script type="text/javascript" src="lib/d3.v2.min.js"></script>
+		<!--<script type="text/javascript" src="lib/d3.layout.cloud.js"></script>-->
+		<script type="text/javascript" src="lib/jquery.1.7.2.min.js"></script>
+		<script type="text/javascript" src="lib/bigtext.js"></script>
+		<script type="text/javascript" src="show.js"></script>
+		<script type="text/javascript">			
+			$(document).ready(function(){
+				function getURLParameter(name) {
+					return decodeURIComponent(
+						(new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;}
+				var baseurl = '/poa/treeword4/';
+				
+				var page = getURLParameter('p') || 0;
+				$("#intro").html('<a href="'+baseurl+'edit.html?p='+page+'">edit content</a>');
+				
+				treeword_build({
+					id:		"thetreemap",
+					file:	'upload/saved_'+page+'.htm',
+				});
+			});	
+		</script>
+	</head>
+	<body>
+		<div id="body">
+			<!- ................................................. -->
+			<div id="intro"></div>
+			<!- ................................................. -->
+			<div id="thetreemap" style="width:98%;height:98%;"></div>	
+		</div>
+	</body>
+</html>
