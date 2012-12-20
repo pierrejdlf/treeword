@@ -1,6 +1,6 @@
 var treeword_build = function(options) {
 	$.get(options['file'], function(data) {
-		options['tree'] = $.parseJSON(data);
+		options['tree'] = data;
 		loadTreemap(options);
 	});
 };
