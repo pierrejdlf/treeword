@@ -14,7 +14,7 @@
 				function getURLParameter(name) {
 					return decodeURIComponent(
 						(new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;}
-				var baseurl = '/poa/treeword4/';
+				var baseurl = '/poa/treeword/';
 				
 				var page = getURLParameter('p') || 0;
 				$("#intro").html('<a href="'+baseurl+'edit.html?p='+page+'">edit content</a>');
