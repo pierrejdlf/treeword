@@ -1,7 +1,7 @@
 function getURLParameter(name) {
 	return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
 }
-var baseurl = '/poa/treeword4/';
+var baseurl = '/poa/treeword/';
 var editing = false;
 var page = getURLParameter('p');
 if(page==null) page=0;

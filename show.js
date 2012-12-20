@@ -31,7 +31,7 @@ var loadTreemap	= function(options) {
 		.size([w, h])
 		.sticky(true)
 		.value(function(d,i) {
-			if(d.content.split('|').length==2)
+			if(d.content.split('|').length>1)
 				return d.content.split('|')[0];
 			else return 10;//d.content.length;
 		});
@@ -68,20 +68,20 @@ var loadTreemap	= function(options) {
 	var adjustFontSize = function(d,elm) {
 		// depends on padding set up in css
 		var padd = 8;
-		var margforinner = -16; // wtf !
+		var margforinner = 0; // wtf !
 		
 		// first guess, quite big
 		var ss = 7+Math.sqrt(d.dx*d.dy/(d.content.length));
 		// test if more that biggest word alone
 		var cont = d.content;
 		if(d.content.split('|').length>1)
-			cont = d.content.split('|')[1];
+			cont = d.content.split('|').slice(-1)[0];
 		cont = cont.replace(/<.+>/," ");
 		var words = cont.split(" ");
 		var maxword = words.sort(function(a,b){return b.length-a.length;})[0];
 		//console.log("===== max word: "+d.content+" ||| "+maxword);
 		$("#"+unikid+"_fonttest div").html(maxword);
-		$("#"+unikid+"_fonttest").css({"width":d.dx-2*padd,"height":d.dx}).bigtext();
+		$("#"+unikid+"_fonttest").css({"width":d.dx,"height":d.dx,"padding":padd+"px"}).bigtext();
 		var bf = $("#"+unikid+" .bigtext-line0").css('font-size').replace("px","");
 		//console.log("font:"+bf);
 		
@@ -99,10 +99,10 @@ var loadTreemap	= function(options) {
 			var size = d3.select(elm).style("font-size").replace("px","");
 			var dec = Math.max(2,dif/50);
 			size = size - dec;
-			//console.log(d.content+" dif:"+dif+" (dec:"+dec+") (fs:"+size+")");
+			console.log(d.content+" dif:"+dif+" (dec:"+dec+") (fs:"+size+")");
 			d3.select(elm).style("font-size", size+"px");
 			innerHeight = elm.scrollHeight-margforinner-(2*padd);
-			//console.log(height+" "+innerHeight);
+			console.log(height+" "+innerHeight);
 			cc+=1;
 			if(size<2) break;
 		}
@@ -141,7 +141,7 @@ var loadTreemap	= function(options) {
 			});
 		}
 	};
-	
+	////////////////////////////////////////////////////////////////////////////////////////////////
 	var node = htm.selectAll(".node")
 		.data(nodes)
 		.enter().append("div")
@@ -149,6 +149,9 @@ var loadTreemap	= function(options) {
 			var cs = "boxnode";
 			cs += d.children ? " dad" : " son";
 			cs += d.depth==1 ? "" : " below";
+			var sp = d.content.split('|');
+			if(sp.length>2)
+				cs += " boxnode_"+sp[1];
 			return cs;
 		})
 		.attr('id',function(d,i) { return "box_"+d.id;})
@@ -157,10 +160,10 @@ var loadTreemap	= function(options) {
 		.style("left", function(d) { return mezoom.translate()[0]+d.x+"px"; })
 		.style("top", function(d) { return mezoom.translate()[1]+d.y+"px"; })
 		.style("z-index", function(d) {return d.depth==0 ? 0 : 1000-d.depth;})
-		.style('background', function(d) { return d.children ? background_dad : background_son ;})
-		.on('mouseover',function(d){ d3.select(this).style('background', function(d) { return d.children ? background_dad_over : background_son ;}); })
+		//.style('background', function(d) { return d.children ? background_dad : background_son ;})
+		//.on('mouseover',function(d){ d3.select(this).style('background', function(d) { return d.children ? background_dad_over : background_son ;}); })
 		.on('mouseout',function(d){
-			d3.select(this).style('background', function(d) { return d.children ? background_dad : background_son ;});
+			//d3.select(this).style('background', function(d) { return d.children ? background_dad : background_son ;});
 /*
 			// reshow last level
 			console.log(d);
@@ -216,7 +219,7 @@ var loadTreemap	= function(options) {
 		.style("font-family",fontfamily)
 		.html(function(d) {
 			var t = d.content;
-			if (t.split("|").length>1) t = t.split("|")[1]; 
+			if (t.split("|").length>1) t = t.split("|").slice(-1)[0]; 
 			return d.depth==0 ? "" : t ;
 		})
 		.each(function(d){ adjustFontSize(d,this); })
