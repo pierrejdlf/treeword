@@ -34,10 +34,10 @@ display a json tree file
 * `id` id of the div you want to disturb
 * `file` filepath of json file containing tree
 * `border` css value of border for each nodebox (default `'none'`)
-* `font-family` used for text inside nodeboxes (default `''Domine'`)
+* `font-family` used for text inside nodeboxes (default `'Domine'`)
 * `background-dad` background of a nodebox with children (default `'rgba(30,150,30,0.2)`)
-* `background-dad-over` background of a nodebox without children (default `'rgba(40,180,40,0.5)`)
-* `background-son` background of a nodebox withou children (default `'rgba(200,80,80,0.2)`)
+* `background-dad-over` background of a nodebox without children (default `'rgba(40,180,40,0.5)'`)
+* `background-son` background of a nodebox withou children (default `'rgba(200,80,80,0.2)'`)
 	
 # dependencies
 
