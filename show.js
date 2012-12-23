@@ -6,7 +6,9 @@ var treeword_build = function(options) {
 };
 var loadTreemap	= function(options) {
 	//console.log(tree);
-	
+
+	var DURIN = 	1900;
+	var DUROUT =	14000;
 	var unikid 			= options['id'];
 	var tree 			= options['tree'];
 	var fontfamily 		= options['font-family'] || 'Arial' ;
@@ -28,8 +30,11 @@ var loadTreemap	= function(options) {
 		.size([w, h])
 		.sticky(true)
 		.value(function(d,i) {
-			if(d.content.split('|').length>1)
-				return d.content.split('|')[0];
+			if(d.content.split('|').length>1) {
+					var vv = d.content.split('|')[0];
+					//console.log(vv);
+					if(vv.length>0) return vv; else return 10;
+				}
 			else return 10;//d.content.length;
 		});
 	var nodes = treemap.nodes(root);//.filter(function(d) { return !d.children; });
@@ -48,12 +53,20 @@ var loadTreemap	= function(options) {
 		.style("display","block")
 		.style("visibility","hidden")
 		.style("padding","8px")
+		.style("border","1px solid")
 		.style("font-family",fontfamily)
-	.append("div");
-		
+	.append("div").style("font-family",fontfamily);
+	
+/*
+	var checkregular = setInterval(function(){
+		console.log(". check .");
+	},400);
+*/
+	
+/*
 	var godeep = function(d,elem) {
 		if(d.children) {
-			d3.select(elem).transition().duration(300).style("opacity",0);
+			//d3.select(elem).transition().duration(300).style("opacity",0);
 			d3.select(elem).style("pointer-events","none");
 			d.children.forEach(function(u){
 				//d3.select("#box_"+u.id+" .boxtext").transition().duration(200).style("color","#383838");
@@ -62,6 +75,7 @@ var loadTreemap	= function(options) {
 			});
 		}	
 	};
+*/
 	var adjustFontSize = function(d,elm) {
 		// depends on padding set up in css
 		var padd = 8;
@@ -78,13 +92,14 @@ var loadTreemap	= function(options) {
 		var maxword = words.sort(function(a,b){return b.length-a.length;})[0];
 		//console.log("===== max word: ["+maxword+"] FROM: "+d.content);
 		$("#"+unikid+"_fonttest div").html(maxword);
-		$("#"+unikid+"_fonttest").css({"width":d.dx-2*padd,"height":d.dx,"padding":padd+"px"}).bigtext();
+		$("#"+unikid+"_fonttest").css({"width":d.dx-2*padd+"px","height":d.dx/2+"px","padding":padd+"px"});
+		$("#"+unikid+"_fonttest").bigtext();
 		var bf = $("#"+unikid+" .bigtext-line0").css('font-size').replace("px","");
 		//console.log("===== bigtextsize:"+bf);
 		
 		// if more then keep like biggest word alone in line
 		if(ss>bf) ss=bf;
-		d3.select(elm).style("font-size",ss+"px");
+		d3.select(elm).style("font-size",ss+"px");	
 		
 		// test if overflow-y ... thinking of padding:8px
 		var height = d.dy;
@@ -139,6 +154,22 @@ var loadTreemap	= function(options) {
 		}
 	};
 	////////////////////////////////////////////////////////////////////////////////////////////////
+	var currentParentId = -1;
+	var reshowElem = function(d,elem) {
+		//console.log("SHOW..: "+d.content);
+		elem.transition().duration(DUROUT).style("opacity",1).each("end",function(){
+			console.log("op=1");
+			if( d.depth>0 && currentParentId!=d.parent.id ) { // do not reshow if we are still in the children !
+				var pelem = htm.select("#box_"+d.parent.id);
+				//console.log("letting appear parent node: "+d.parent.content+" (depth:"+d.parent.depth);
+				pelem.style("opacity",0);
+				pelem.style("display","");
+				pelem.style("pointer-events","");
+				reshowElem(d.parent,pelem);
+			}	
+		});
+	};
+	////////////////////////////////////////////////////////////////////////////////////////////////
 	var node = htm.selectAll(".node")
 		.data(nodes)
 		.enter().append("div")
@@ -152,70 +183,59 @@ var loadTreemap	= function(options) {
 			return cs;
 		})
 		.attr('id',function(d,i) { return "box_"+d.id;})
+		.attr("sable",0)
 		.style("width",function(d) { return mezoom.scale()*d.dx+"px";})
 		.style("height",function(d) { return mezoom.scale()*d.dy+"px";})
 		.style("left", function(d) { return mezoom.translate()[0]+d.x+"px"; })
 		.style("top", function(d) { return mezoom.translate()[1]+d.y+"px"; })
 		.style("z-index", function(d) {return d.depth==0 ? 0 : 1000-d.depth;})
 		.on('mouseout',function(d){
-/*
-			// reshow last level
-			console.log(d);
-			if(d.depth>=2) {
-				d3.select(this).transition().duration(200).style("opacity",0.05);
-				d.parent.children.forEach(function(u){
-					d3.select("#box_"+u.id+" .boxtext").transition().duration(200).style("opacity",0.05);
-				});
-				d3.select("#box_"+d.parent.id+" .boxtext").transition().duration(200).style("opacity",1);
-				d3.select(this).style("pointer-events","");
-			}
-			d3.event.stopPropagation();		
-*/
-		})
-		.each(function(d){
-			if(options['border'])
-				d3.select(this).style("border",options['border']);
-			else {
-				d3.select(this).style("border-right","1px dashed rgba(100,100,100,0.2)");
-				d3.select(this).style("border-top","1px dashed rgba(100,100,100,0.2)");
+			d3.select(this).attr("sable",0);
+			if(d3.select(this).style("opacity")!=0) {
+				//console.log("OUT of: "+d.content);
+				//d3.select(this).classed("mover",false).classed("mout",true);
+				reshowElem(d,d3.select(this));
 			}
 		})
+		.on('mouseover',function(d){
+			currentParentId = d.parent.id;
+		})
+		.each(function(d){})
 		.on('mousemove', function(d) {
-			if(d.children) {
-				var intv = 0.01;
-				var opc = htm.select("#box_"+d.children[0].id+" .child").style("opacity");
-				var op = d3.select(this).style("opacity");
-				op -= intv;
-				opc = parseFloat(opc) + intv;
-				//console.log("op:"+opc);
-				//d3.select(this).style("opacity",op);
-/*
-				d.children.forEach(function(u){
-					d3.select("#box_"+u.id+" .child").style("opacity",opc);
-				});
-*/
-				if(op<0.1) godeep(d,this);
+			// if a lot of mousemoves, then we strat to fade-out
+			var sab = parseInt(d3.select(this).attr("sable"));
+			d3.select(this).attr("sable",sab+1);
+			//console.log("sable: "+sab);
+			if(sab>9) {
+				//d3.select(this).classed("mover",true).classed("mout",false);
+				d3.select(this).attr("sable",0);
+				if(d.children) {
+					d3.select(this).transition().duration(DURIN).style("opacity",0).each("end",function(){
+						//console.log("op=0");
+						d3.select(this).style("display","none");
+						d3.select(this).style("pointer-events","none");
+					});
+				}
 			}
-			d3.event.stopPropagation();	
-	
 		})
 		.on("click", function(d) {
 			// hide current and show more depth
 			godeep(d,this);
 			d3.event.stopPropagation();			
 		})
-	node.append("div")
+	var nodts = node.append("div")
 		.attr("class","child boxtext")
 		//.style("z-index", function(d) {return d.depth==0 ? 0 : 1001-d.depth;})
-		.style("color", function(d) { return d3.scale.category20b(d.depth);})
-		.style("opacity", function(d) { return d.depth==1 ? 1 : 0.05;})
-		.style("text-align",function(d,i){ return i%2==0 ? "right" : "left" ;})
-		.style("font-family",fontfamily)
+		//.style("color", function(d) { return d3.scale.category20b(d.depth);})
+		.style("opacity", 1)//function(d) { return d.depth==1 ? 1 : 0.05;})
+		.style("text-align",function(d,i) {return i%2==0 ? "right" : "left" ;})
+		//.style("font-family",function(d) {return fontfamily;})
 		.html(function(d) {
 			var t = d.content;
+			if(t=="i") return '<img src="sk/sc_0'+parseInt(Math.random()*93)+'.png">';
 			if (t.split("|").length>1) t = t.split("|").slice(-1)[0]; 
 			return d.depth==0 ? "" : t ;
-		})
-		.each(function(d){ adjustFontSize(d,this); })
-		.each(function(d){ adjustImageSize(d,this); });
+		});
+	nodts.each(function(d){ if(d.depth!=0) adjustFontSize(d,this); });
+	nodts.each(function(d){ if(d.depth!=0) adjustImageSize(d,this); });
 };

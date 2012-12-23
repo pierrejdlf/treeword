@@ -4,13 +4,42 @@
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 		<link type="text/css" rel="stylesheet" href="show.css"/>
 		<link href='http://fonts.googleapis.com/css?family=Domine' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Rambla' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Gafata' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Elsie+Swash+Caps' rel='stylesheet' type='text/css'>
 		<style type="text/css">
+			html, body {
+				background:#909090;
+				margin:0;
+				padding:0;
+				height: 100%;
+			}
+			#intro {
+				position: fixed;
+				left:0;
+				top:0;
+				background: white;
+				color:black;
+				padding:3px;
+				z-index:9999999;
+				font-size: 0.6em;
+			}
+			#thetreemap {
+				position: fixed;
+				left:0;
+				top:0;
+				width:100%;
+				height:100%;
+				min-height:100%; 
+			}
+/*
 			.boxnode_p {
 				background: rgba(10,40,20,0.2);
 			}
 			.boxnode_a {
 				background: rgba(80,10,100,0.2);
 			}
+*/
 		</style>
 		<script type="text/javascript" src="lib/d3.v2.min.js"></script>
 		<script type="text/javascript" src="lib/jquery.1.7.2.min.js"></script>
@@ -24,7 +53,7 @@
 				var baseurl = '/poa/treeword/';
 				
 				var page = getURLParameter('p') || 0;
-				$("#intro").html('<a href="'+baseurl+'edit.html?p='+page+'">edit content</a>');
+				$("#intro").html('<a target="_new" href="'+baseurl+'edit.html?p='+page+'">edit content</a>');
 				
 				treeword_build({
 					id:		"thetreemap",
@@ -39,7 +68,7 @@
 			<!- ................................................. -->
 			<div id="intro"></div>
 			<!- ................................................. -->
-			<div id="thetreemap" style="width:98%;height:98%;"></div>	
+			<div id="thetreemap"></div>	
 		</div>
 	</body>
 </html>

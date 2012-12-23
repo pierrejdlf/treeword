@@ -10,7 +10,7 @@ var nestable = null;
 
 var initTreeword = function() {
 	
-	$("#intro").html('<a href="'+baseurl+'show.html?p='+page+'">show content</a> NB: au début d‘un bloc, "10|blabla" modifie la taille du bloc (2=petit > 10=normal > 50=gros)');
+	$("#intro").html('<a href="'+baseurl+'show.html?p='+page+'">show content</a> NB: au début d‘un bloc, "10|x|blabla" modifie la taille du bloc (2=petit > 10=normal > 50=gros & .... x= a/b/c/d au choix');
 	
 	// + underscore.js templating engine converts json structure to well formatted html
 	// + jquery.nestable.js transforms html to a draggable nested list
@@ -21,13 +21,13 @@ var initTreeword = function() {
 	
 	var saveToDisk = function(json) {
 		var url = baseurl+'edit_save.php';
-		$.post(url,{'content':json,'fn':'saved_'+page+'.htm'},function(d) {
+		$.post(url,{'content':json,'fn':'saved_'+page+'.json'},function(d) {
 			console.log("SAVED: "+d);
 		});	
 	};
 
-	var gett = $.get('upload/saved_'+page+'.json', function(data) {
-		loadIntoPage($.parseJSON(data));
+	var gett = $.get('samples/saved_'+page+'.json', function(data) {
+		loadIntoPage(data);
 	});
 	gett.error( function() {
 		var sampledata = [{"id":1,"content":"vide"},{"id":2,"content":"pas","children":[{"id":3,"content":"rien"},{"id":4,"content":"no"}]}];

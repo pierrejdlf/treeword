@@ -6,15 +6,18 @@ td {
 	width:45%;
 }
 #mynestext textarea {
-	position: absolute;
+	position: fixed;
 	right:10px;
+	top:10px;
 	width:50%;
 	height:200px;
 }
-.dd3-content {
+.dd3-content, h1, h2, h3, h4 {
 	/* to hide demasiado text */
 	overflow: hidden;
 	font-size: 11px;
+	padding:0;
+	margin:0;
 }
 
 
