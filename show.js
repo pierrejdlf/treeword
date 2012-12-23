@@ -7,7 +7,7 @@ var treeword_build = function(options) {
 var loadTreemap	= function(options) {
 	//console.log(tree);
 
-	var DURIN = 	1900;
+	var DURIN = 	1200;
 	var DUROUT =	14000;
 	var unikid 			= options['id'];
 	var tree 			= options['tree'];
@@ -155,7 +155,7 @@ var loadTreemap	= function(options) {
 	};
 	////////////////////////////////////////////////////////////////////////////////////////////////
 	var currentParentId = -1;
-	var reshowElem = function(d,elem) {
+	var reshowTheElem = function(d,elem) {
 		//console.log("SHOW..: "+d.content);
 		elem.transition().duration(DUROUT).style("opacity",1).each("end",function(){
 			console.log("op=1");
@@ -165,10 +165,22 @@ var loadTreemap	= function(options) {
 				pelem.style("opacity",0);
 				pelem.style("display","");
 				pelem.style("pointer-events","");
-				reshowElem(d.parent,pelem);
+				reshowTheElem(d.parent,pelem);
 			}	
 		});
 	};
+	var digTheElement = function(d,elem) {
+		if(d.children && elem.attr("disapearing")!=1) { // if has children & not already disapearing
+			elem.attr("sable",0);
+			elem.attr("disapearing",1);
+			elem.transition().duration(DURIN).style("opacity",0).each("end",function(){
+				//console.log("op=0");
+				elem.style("display","none");
+				elem.style("pointer-events","none");
+				elem.attr("disapearing",0);
+			});
+		}
+	}
 	////////////////////////////////////////////////////////////////////////////////////////////////
 	var node = htm.selectAll(".node")
 		.data(nodes)
@@ -191,10 +203,10 @@ var loadTreemap	= function(options) {
 		.style("z-index", function(d) {return d.depth==0 ? 0 : 1000-d.depth;})
 		.on('mouseout',function(d){
 			d3.select(this).attr("sable",0);
-			if(d3.select(this).style("opacity")!=0) {
+			if(d3.select(this).style("opacity")!=0 && d3.select(this).attr("disapearing")!=1) {
 				//console.log("OUT of: "+d.content);
 				//d3.select(this).classed("mover",false).classed("mout",true);
-				reshowElem(d,d3.select(this));
+				reshowTheElem(d,d3.select(this));
 			}
 		})
 		.on('mouseover',function(d){
@@ -202,26 +214,21 @@ var loadTreemap	= function(options) {
 		})
 		.each(function(d){})
 		.on('mousemove', function(d) {
-			// if a lot of mousemoves, then we strat to fade-out
-			var sab = parseInt(d3.select(this).attr("sable"));
-			d3.select(this).attr("sable",sab+1);
-			//console.log("sable: "+sab);
-			if(sab>9) {
-				//d3.select(this).classed("mover",true).classed("mout",false);
-				d3.select(this).attr("sable",0);
-				if(d.children) {
-					d3.select(this).transition().duration(DURIN).style("opacity",0).each("end",function(){
-						//console.log("op=0");
-						d3.select(this).style("display","none");
-						d3.select(this).style("pointer-events","none");
-					});
+			if(d3.select(this).attr("disapearing")!=1) {
+				// count the mousemoves
+				var sab = parseInt(d3.select(this).attr("sable"));
+				d3.select(this).attr("sable",sab+1);
+				//console.log("sable: "+sab);
+				if(d3.select(this).attr("sable")>15) { // if a lot of mousemoves, then we strat to fade-out
+					digTheElement(d,d3.select(this));
+					//d3.select(this).classed("mover",true).classed("mout",false);
 				}
 			}
 		})
 		.on("click", function(d) {
 			// hide current and show more depth
-			godeep(d,this);
-			d3.event.stopPropagation();			
+			digTheElement(d,d3.select(this));
+			//d3.event.stopPropagation();			
 		})
 	var nodts = node.append("div")
 		.attr("class","child boxtext")
