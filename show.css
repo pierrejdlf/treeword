@@ -5,20 +5,21 @@
 .boxnode {
 	position:absolute;
 	overflow:hidden;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
+	/*-moz-border-radius: 10px;
+	border-radius: 10px;*/
 	/*border: #F8F8F8 1px solid;*/
-	border:transparent 2px solid;
+	/*border:transparent 2px solid;*/
+	/* very slow when a lot of boxes ! */
 	/*-moz-box-shadow: 1px 1px 8px #D0D0D0;
 	-webkit-box-shadow: 1px 1px 8px #D0D0D0;
 	box-shadow: 1px 1px 8px #D0D0D0;*/
-   -moz-box-sizing:    border-box;
+   /*-moz-box-sizing:    border-box;
    -webkit-box-sizing: border-box;
-    box-sizing:        border-box;	
+    box-sizing:        border-box;	*/
 }
-.boxnode:hover {
-	border:#FFCC33 2px solid;
-	z-index:9999999;
+.boxnode.dad:hover {
+	/*border:#FFCC33 2px solid;*/
+	/*z-index:9999999;*/
 }
 /* default values that can be overidden using css */
 .boxnode.dad {
@@ -64,36 +65,38 @@
 }
 .boxnode_a {
 	font-family:'Rambla';
-	color:#787878;
+	color:#C8C8C8;
+	font-style: italic;
 }
 .boxnode_b {
 	font-family:'Gafata';
 	font-style:italic;
+	color:#990000;
 }
 .boxnode_c {
 	font-family:'Rambla';
 	font-weight: bold;
+	//color:#990000;
 	color:rgba(220,220,220,0.9);
 }
 .boxnode_c .boxtext{
-	background:rgba(20, 20, 20, 0.7);
+	background:#990000;/*//rgba(20, 20, 20, 0.7);*/
 }
 .boxnode_d {
-	font-family:'Elsie Swash Caps', cursive;
-	color:#990000;
-	font-style:italic;
+	font-family:'Elsie Swash Caps';/* cursive;*/
+	/*color:#990000;*/
+	color:#464646;
+	/*font-style:italic;*/
+}
+
+h1 {
+	font-weight: bold;
+	color: black;
+	font-size: 1.5em;
+	margin:0;
+	padding:0;
 }
 /*
-.niceitalic {
-	font: italic 12px Georgia, serif;
-}
-h1 {
-	display: inline;
-	position: relative;
-	font: 20px Helvetica, Sans-Serif;
-	letter-spacing: -5px;
-	color: rgba(0,0,255,0.5); 
-}
 h1:after {
 	content: "__";
 	position: absolute; left: 10px; top: 5px;

@@ -8,14 +8,14 @@ var loadTreemap	= function(options) {
 	//console.log(tree);
 
 	var DURIN = 	1200;
-	var DUROUT =	14000;
+	var DUROUT =	8000;
 	var unikid 			= options['id'];
 	var tree 			= options['tree'];
-	var fontfamily 		= options['font-family'] || 'Arial' ;
+	var fontfamily 		= options['font-family'] || 'Domine' ;
 	var data = {'content':'root','children':tree};
 	
-	var w = $("#"+unikid).width() || 640 ,
-		h = $("#"+unikid).height() || 480 ,
+	var w = options['w'] || $("#"+unikid).width() || 350 ,
+		h = options['h'] || $("#"+unikid).height() || 200 ,
 		x = d3.scale.linear().range([0, w]),
 		y = d3.scale.linear().range([0, h]),
 		color = d3.scale.category20c(),
@@ -51,6 +51,9 @@ var loadTreemap	= function(options) {
 	d3.select("#"+unikid).append("div")
 		.attr("id",unikid+"_fonttest")
 		.style("display","block")
+		.style("position","fixed")
+		.style("left",0)
+		.style("top",0)
 		.style("visibility","hidden")
 		.style("padding","8px")
 		.style("border","1px solid")
@@ -156,9 +159,9 @@ var loadTreemap	= function(options) {
 	////////////////////////////////////////////////////////////////////////////////////////////////
 	var currentParentId = -1;
 	var reshowTheElem = function(d,elem) {
-		//console.log("SHOW..: "+d.content);
+		//console.log("UNDIG..: depth="+d.depth+" = "+d.content);
 		elem.transition().duration(DUROUT).style("opacity",1).each("end",function(){
-			console.log("op=1");
+			//console.log("op=1");
 			if( d.depth>0 && currentParentId!=d.parent.id ) { // do not reshow if we are still in the children !
 				var pelem = htm.select("#box_"+d.parent.id);
 				//console.log("letting appear parent node: "+d.parent.content+" (depth:"+d.parent.depth);
@@ -170,6 +173,7 @@ var loadTreemap	= function(options) {
 		});
 	};
 	var digTheElement = function(d,elem) {
+		//console.log("DIG..: "+d.content);
 		if(d.children && elem.attr("disapearing")!=1) { // if has children & not already disapearing
 			elem.attr("sable",0);
 			elem.attr("disapearing",1);
@@ -202,6 +206,7 @@ var loadTreemap	= function(options) {
 		.style("top", function(d) { return mezoom.translate()[1]+d.y+"px"; })
 		.style("z-index", function(d) {return d.depth==0 ? 0 : 1000-d.depth;})
 		.on('mouseout',function(d){
+			currentParentId = -1;
 			d3.select(this).attr("sable",0);
 			if(d3.select(this).style("opacity")!=0 && d3.select(this).attr("disapearing")!=1) {
 				//console.log("OUT of: "+d.content);

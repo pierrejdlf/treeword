@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+		<link type="text/css" rel="stylesheet" href="show.css"/>
+		<link href='http://fonts.googleapis.com/css?family=Domine' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Rambla' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Gafata' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Elsie+Swash+Caps' rel='stylesheet' type='text/css'>
+		<style type="text/css">
+			html {
+				margin:0;
+				padding:0;
+				height: 100%;		
+			}
+			body {
+				/*background: url(http://subtlepatterns.com/patterns/lghtmesh.png);
+				background: #8a8a8a;*/
+				background-image: url("ZenBG-1.png"), url("ZenBG-2.png");
+				background-repeat: repeat-x, repeat;
+				margin:0;
+				padding:0;
+				height:100%;
+				min-height:80%;
+			}
+			table {
+				margin:0;
+				padding:0;
+				width:100%;
+				height:100%;
+				min-height:100%;
+			}
+			td {
+				/*border:1px solid red;*/
+				padding:20px;
+				width:50%;
+				height:100%;
+				padding-bottom:30px;
+				position:relative;
+			}
+			/* -------------------------------------------- */
+			.treeblok {
+				/*position:fixed;*/
+				width:100%;
+				height:100%;
+				min-height:100%;
+				background: rgba(240, 240, 240, 1);
+				box-shadow: 0 0 10px rgba(0,0,0,0.3);
+				/*border:2px solid blue;*/
+			}
+			#tleft {
+				/*left:5px;
+				top:5px;*/
+			}
+			#tright {
+				/*right:5px;
+				top:5px;*/
+			}
+			/* -------------------------------------------- */
+			.letter:before, .letter:after {
+				content: "";
+				/*height: 98%;*/
+				/*width: 40%;*/
+				position: absolute;
+				z-index: -1;
+				bottom:30px;
+				right:20px;
+			}
+			.letter:before {
+				background: #fafafa;
+				box-shadow: 0 0 5px rgba(0,0,0,0.6);
+				left: 20px;
+				top: 23px;
+				-webkit-transform: rotate(1.5deg);
+			}
+			.letter:after {
+				background: #f6f6f6;
+				box-shadow: 0 0 2px rgba(0,0,0,0.3);
+				left: 29px;
+				top: 21px;
+				-webkit-transform: rotate(-2deg);
+			}
+			/* -------------------------------------------- */
+			.shadow {
+				position: relative;
+			}
+			.shadow:after {
+				z-index: -1;
+				content: '';
+				width: 80%;
+				position: absolute;
+				top: 90%;
+				background: #777;
+			}
+			.shadow.sl:after {
+				bottom: 12px;
+				right: 8px;
+				left: auto;
+				-webkit-box-shadow: 0 15px 10px #777;
+				-moz-box-shadow: 0 15px 10px #777;
+				box-shadow: 0 15px 10px #777;
+				-webkit-transform: rotate(2deg);
+				-moz-transform: rotate(2deg);
+				transform: rotate(2deg);			
+			}
+			.shadow.sr:after {
+			
+			}
+		</style>
+		<script type="text/javascript" src="lib/d3.v2.min.js"></script>
+		<script type="text/javascript" src="lib/jquery.1.7.2.min.js"></script>
+		<script type="text/javascript" src="lib/bigtext.js"></script>
+		<script type="text/javascript" src="show.js"></script>
+		<script type="text/javascript">			
+			$(document).ready(function(){
+				var w = $("#tleft").width();
+				var h = $("#tleft").height();
+				console.log("WH:"+w+"/"+h);
+				treeword_build({id:'tleft',file:'samples/saved_8.json'});
+				treeword_build({id:'tright',file:'samples/saved_9.json'});
+			});	
+		</script>
+	</head>
+	<body>
+		<table>
+		<tr>
+			<td><div id="tleft" class="treeblok letter"></div></td>
+			<td><div id="tright" class="treeblok letter"></div></td>
+		</tr>
+		</table>
+	</body>
+</html>
