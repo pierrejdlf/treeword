@@ -19,13 +19,14 @@ the content is represented as a nested tree, containing text or images. you'll n
 
 each element will be represented as a clickable div (nodebox)
 
-## edit.html
+## EDIT
 
-display a json tree file as a nested editable tree, using the formidable jQuery.nestable plugin
+Formerly, `edit.html` displayed a json tree file as a nested editable tree, using the jQuery.nestable plugin
+But there is an easier way using an gingkoapp tree json url
 
-## show.html
+## DISPLAY
 
-display a json tree file
+`show.html` display a json tree file
 
 	treeword_build({ /* config options */ });
 
