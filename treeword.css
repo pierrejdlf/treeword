@@ -5,6 +5,8 @@
 .boxnode {
 	position:absolute;
 	overflow:hidden;
+	cursor: pointer;
+
 	/*-moz-border-radius: 10px;
 	border-radius: 10px;*/
 	/*border: #F8F8F8 1px solid;*/
@@ -18,12 +20,13 @@
     box-sizing:        border-box;	*/
 }
 .boxnode.dad:hover {
+	background: #D6E1E4;
 	/*border:#FFCC33 2px solid;*/
 	/*z-index:9999999;*/
 }
 /* default values that can be overidden using css */
 .boxnode.dad {
-	background: rgba(240,240,240,1);
+	background: #EFEFEF;
 }
 /*
 .boxnode.dad:hover {

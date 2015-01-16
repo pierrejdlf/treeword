@@ -1,1 +1,308 @@
-[{"id":0,"content":"ajoutez moi","size":11,"myid":"0"},{"id":1,"content":"50|à demi-mots","size":14,"myid":"1","children":[{"id":2,"content":"50|<img src=\"img/digging.gif\">","size":30,"myid":"2","children":[{"id":3,"content":"|a|un texte, c'est très profond","size":31,"myid":"3"},{"id":4,"content":"2|<img src=\"img/commande.jpg\">","size":30,"myid":"4"},{"id":5,"content":"il faut demander de l'aide pour pouvoir","size":39,"myid":"5","children":[{"id":6,"content":"|a|parfois, il faut un coup de main pour le mettre en tranche et l'absorber","size":75,"myid":"6"},{"id":7,"content":"pas toujours","size":12,"myid":"7"},{"id":8,"content":"<img src=\"img/mamans.gif\">","size":26,"myid":"8"},{"id":9,"content":"|a|seulement","size":12,"myid":"9","children":[{"id":10,"content":"|c|si ses pages sont au nombre de 5","size":35,"myid":"10"},{"id":11,"content":"<img src=\"img/limpiando.jpg\">","size":29,"myid":"11","children":[{"id":12,"content":"<img src=\"img/garcon.jpg\">","size":26,"myid":"12"},{"id":13,"content":"et qu'il ne contient pas de lien hypertextuel","size":45,"myid":"13","children":[{"id":14,"content":"si oui","size":6,"myid":"14","children":[{"id":15,"content":"<img src=\"img/maree.gif\">","size":25,"myid":"15"},{"id":16,"content":"c'est une bonne aventure","size":24,"myid":"16"}]},{"id":17,"content":"<img src=\"img/commande.jpg\">","size":28,"myid":"17"},{"id":18,"content":"|c|si non","size":9,"myid":"18","children":[{"id":19,"content":"pour la lecture","size":15,"myid":"19"},{"id":20,"content":"<img src=\"img/croix.jpg\">","size":25,"myid":"20"},{"id":21,"content":"il faudra plus de temps","size":23,"myid":"21"}]}]}]}]}]},{"id":22,"content":"|b|on peut le lire très attentivement, en s'arrêtant à chaque syllabe, et en essayant d'en tirer tous les sens qu'il veut bien laisser échapper","size":143,"myid":"22","children":[{"id":23,"content":"un mot tout seul","size":16,"myid":"23","children":[{"id":24,"content":"dandrite","size":8,"myid":"24"},{"id":25,"content":"|b|par exemple","size":14,"myid":"25"}]},{"id":26,"content":"|d|une apostrophe","size":17,"myid":"26"},{"id":27,"content":"|b|un personnage","size":16,"myid":"27","children":[{"id":28,"content":"|a|plein de tracas","size":18,"myid":"28"},{"id":29,"content":"|d|qui raconte que ma mère a connu mon père à une époque où les enfants sortaient des bouteilles. la raison pour laquelle elle ne l'avait pas cru c'est qu'il avait déjà une quantité astronomique de frères et sœurs","size":213,"myid":"29"}]}]},{"id":30,"content":"|b|il rentre dans la tête sans qu'on s'en aperçoive","size":51,"myid":"30","children":[{"id":31,"content":"|c|et c'est bien","size":16,"myid":"31"},{"id":32,"content":"|a|ça permet de le faire vivre à sa manière","size":43,"myid":"32"},{"id":33,"content":"|c|une page d'un livre est un livre à une seule page","size":52,"myid":"33","children":[{"id":34,"content":"on s'invente le début et on subit la fin","size":40,"myid":"34"}]}]},{"id":35,"content":"ses niveaux de lectures sont inépuisables","size":41,"myid":"35","children":[{"id":36,"content":"|d|le cerveau balaye les palabres et n'en garde que parfois","size":59,"myid":"36"},{"id":37,"content":"|b|si l'on veut bien","size":20,"myid":"37"}]}]}]}]
+[
+  {
+    "content": "les p'tits papiers cousus et reconnus",
+    "children": [
+      {
+        "content": "pastille fraîche du corps et de son squelette. ils ont avec eux l'expérience",
+        "children": [
+          {
+            "content": "re-lire ce qui a glissé -un peu, dans le passé",
+            "children": [
+              {
+                "content": "on doit pouvoir mesurer sa sincérite, et puis on se demandera autre chose. tout sera vite oublié. au mieux, il aura pris quelques notes qu'on pourra utiliser par perte de mémoire"
+              }
+            ]
+          },
+          {
+            "content": "le reste des mots qui perd son sens. on y retrouvera pas plus d'une partie des chapitres originaux, puisque la bibliothèque de cette époque n'avait pas d'escalier"
+          }
+        ]
+      },
+      {
+        "content": "le carré s'en va sans qu-t'ai pu cliquer.",
+        "children": [
+          {
+            "content": "tout ça pour une résidence de 30 jours, waou"
+          },
+          {
+            "content": "ici"
+          },
+          {
+            "content": "il y a des mots perdus, des boutons et des menus.. ceux qui se sont échappés du clic sans pensée",
+            "children": [
+              {
+                "content": "perdre ses clefs et celles des autres, aux choix."
+              }
+            ]
+          },
+          {
+            "content": "il y a du discours pensé - “ je vais lui faire croire que je suis quelqu'un de drôle “"
+          },
+          {
+            "content": "il y a du discours direct - de chat, de vrac, de mails",
+            "children": [
+              {
+                "content": "un temps réel presque simulé",
+                "children": [
+                  {
+                    "content": " ceux qui s'éffacent ou qu'on supprime"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "content": "il y a des images, de celles qui cognent aux parois et qu'à peine on voit",
+            "children": [
+              {
+                "content": "et le reste s'en va"
+              },
+              {
+                "content": "et"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "content": " ceux qui poussent à réfléchir"
+      },
+      {
+        "content": "écrire, et mettre ses pieds au centre de gravité des oreilles",
+        "children": [
+          {
+            "content": "attraper les phrases par des cornes, leur redonner corps",
+            "children": [
+              {
+                "content": "blocs en sable que le vent époussiette",
+                "children": [
+                  {
+                    "content": "on apercevra les changements d'humeur"
+                  }
+                ]
+              },
+              {
+                "content": "nous nous souviendrons de tous les détails et des bruits"
+              }
+            ]
+          },
+          {
+            "content": "“et toi ne me comprendra pas“",
+            "children": [
+              {
+                "content": "ce clavier là ne me ressemble pas du tout",
+                "children": [
+                  {
+                    "content": "ta signature avait changé"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "content": "c'est en devinant qu'on apprend à lire, mot après mot"
+          },
+          {
+            "content": "que m'a t'il dit ?",
+            "children": [
+              {
+                "content": "tes mots n'ont pas assez de MGPixels"
+              },
+              {
+                "content": "tout a été enregistré, je pourrais le retrouver."
+              },
+              {
+                "content": "si jamais tu m'entends, n'ouvre pas le mail que je t'ai envoyé, c'est important."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "content": "c'est quoi, ces mots et ces images dans ces rectangles ?",
+    "children": [
+      {
+        "content": "il s'agit d'explorer un territoire à géographie variable",
+        "children": [
+          {
+            "content": "le sens manque d'espace",
+            "children": [
+              {
+                "content": "des trajectoires autonomes qui finissent par se perdre"
+              }
+            ]
+          },
+          {
+            "content": "l'espace emboité n'a pas de membrane"
+          },
+          {
+            "content": "même discours, mais le chemin est personnel"
+          },
+          {
+            "content": "tout n'est pas visible dès le départ !",
+            "children": [
+              {
+                "content": "brasser du sable",
+                "children": [
+                  {
+                    "content": "on ne peut pas cliquer partout, on ne peut plus se perdre, on avance petit à petit"
+                  },
+                  {
+                    "content": "grain après grain, il glisse hors de la paume",
+                    "children": [
+                      {
+                        "content": "et on découvre ce qu'il y a en dessous"
+                      }
+                    ]
+                  },
+                  {
+                    "content": "le laisser couler entre les doigts",
+                    "children": [
+                      {
+                        "content": "l'horizon du sens avant les traits"
+                      }
+                    ]
+                  },
+                  {
+                    "content": "on n'en voit que la surface"
+                  }
+                ]
+              },
+              {
+                "content": "car il faut du temps pour lire et pour digérer",
+                "children": [
+                  {
+                    "content": "du temps pour créer des liens"
+                  }
+                ]
+              },
+              {
+                "content": "on peut s'arrêter lorsque l'on n'en peut plus"
+              },
+              {
+                "content": "au départ, la question est simple",
+                "children": [
+                  {
+                    "content": "ensuite, elle se complexifie",
+                    "children": [
+                      {
+                        "content": "le tableau gagne en précision, en résolution. ses feuilles se multiplient, les trajectoires s'éparpillent"
+                      },
+                      {
+                        "content": "laissant derrière le texte une quantité époustouflante de sens"
+                      }
+                    ]
+                  },
+                  {
+                    "content": "elle se détaille, sa forme se dessine d'aspérités"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "content": "le texte se protège, il se replie sur lui-même",
+        "children": [
+          {
+            "content": "il se cache. il faut en ouvrir les portes"
+          }
+        ]
+      },
+      {
+        "content": "tout est titre, tout est appel à vouloir en savoir plus",
+        "children": [
+          {
+            "content": "pas d'introduction, pas de développement, pas de conclusion"
+          },
+          {
+            "content": "plutôt: des trajectoires"
+          }
+        ]
+      },
+      {
+        "content": "c'est un dialogue dans lequel on choisit la vitesse de compréhension",
+        "children": [
+          {
+            "content": "ce serait rigolo si, pendant un débat télévisé, la personne qui parle étaient celle que l'on regarde, et pas l'inverse."
+          },
+          {
+            "content": "une référence",
+            "children": [
+              {
+                "content": "peut-être appuyée"
+              },
+              {
+                "content": "développée"
+              }
+            ]
+          },
+          {
+            "content": "quand c'est écrit en petit"
+          },
+          {
+            "content": "les commentaires sont hierarchisés, afin de voir de quel aspect du discours ils traitent"
+          },
+          {
+            "content": "on comprend mieux ?"
+          }
+        ]
+      },
+      {
+        "content": "on peut y jouer !",
+        "children": [
+          {
+            "content": "on imagine que la lecture de l'un pourrait déterminer une nouvelle hierarchie pour un autre",
+            "children": [
+              {
+                "content": "petit à petit, émerge la hierarchie la plus compréhensible (cf eye tracking sur pages web pour savoir quelles sont les zones qui parlent le plus)"
+              },
+              {
+                "content": "structure en mouvement"
+              }
+            ]
+          },
+          {
+            "content": "on imagine: un dispositif -suivant le regard- creuse automatiquement dans ces blocs de sens"
+          },
+          {
+            "content": "chacun pourrait éditer ces petits blocs",
+            "children": [
+              {
+                "content": "les découper pour y placer son morceau, ce qu'il en pense"
+              }
+            ]
+          },
+          {
+            "content": "interdiction de lire trop vite ! par exemple, il serait impossible de cliquer sur un bloc avant 1/2 minutes"
+          },
+          {
+            "content": "le jeu, si l'on participe, indique sur facebook la profondeur explorée dans le texte",
+            "children": [
+              {
+                "content": "si tout le monde clique ici, le bloc peut se réduire, pour favoriser l'exploration de territoires inconnus",
+                "children": [
+                  {
+                    "content": "la dispersion des masses"
+                  },
+                  {
+                    "content": "répartition du traffic"
+                  },
+                  {
+                    "content": "un aimant vers l'inconnu"
+                  }
+                ]
+              },
+              {
+                "content": "la couleur des blocs indiquerait leur succès sur la masse, la fréquence des clics."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -53,13 +53,17 @@
 				function getURLParameter(name) {
 					return decodeURIComponent(
 						(new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;}
-				var baseurl = '/poa/treeword/';
 				
 				var page = getURLParameter('p') || 0;
 				
 				treeword_build({
 					id:		"thetreemap",
-					file:	'data/saved_'+page+'.json',
+					uri:	"data/saved_"+page+".json",
+					//uri: 	"miniProxy.php/http://gingkoapp.com/treeword.json",
+					setidsizes: true, // set to false if you manually set ids and sizes
+					autodig: false,
+					durin: 0, //animation duration digging in
+					durout: 0, //animation duration digging out
 					'font-family': 'Domine',
 				});
 

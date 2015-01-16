@@ -1,17 +1,30 @@
+var GLOBALCOUNTERID = 0;
+var recursiveUpdateElements = function(list) {
+	list.forEach(function(d) {
+		d.size = 1;
+		d.myid = GLOBALCOUNTERID++;
+		if(d.children)
+			recursiveUpdateElements(d.children);
+	});
+};
+
 var treeword_build = function(options) {
-	$.get(options['file'], function(data) {
-		options['tree'] = data;
+	$.get(options.uri, function(data) {
+		if(options.setidsizes) {
+			recursiveUpdateElements(data);
+		}
+		options.tree = data;
 		loadTreemap(options);
 	});
 };
 var loadTreemap	= function(options) {
 	//console.log(tree);
 
-	var DURIN = 	1200;
-	var DUROUT =	8000;
-	var unikid 			= options['id'];
-	var tree 			= options['tree'];
-	var fontfamily 		= options['font-family'] || 'Domine' ;
+	var DURIN = 	options.durin;
+	var DUROUT =	options.durout;
+	var unikid = 	options.id;
+	var tree = 		options.tree;
+	var fontfamily = options['font-family'] || 'Domine' ;
 	var data = {'content':'root','children':tree};
 	
 	var w = options['w'] || $("#"+unikid).width() || 350 ,
@@ -21,7 +34,7 @@ var loadTreemap	= function(options) {
 		color = d3.scale.category20c(),
 		root, node;
 	node = root = data;	
-	console.log("Loading Treeword ("+unikid+"|"+options['file']+") with size ["+w+","+h+"]");
+	console.log("Loading Treeword ("+unikid+"|"+options.uri+") with size ["+w+","+h+"]");
 	
 	// layout
 	var treemap = d3.layout.treemap()
@@ -204,8 +217,10 @@ var loadTreemap	= function(options) {
 		.style("height",function(d) { return mezoom.scale()*d.dy+"px";})
 		.style("left", function(d) { return mezoom.translate()[0]+d.x+"px"; })
 		.style("top", function(d) { return mezoom.translate()[1]+d.y+"px"; })
-		.style("z-index", function(d) {return d.depth==0 ? 0 : 1000-d.depth;})
-		.on('mouseout',function(d){
+		.style("z-index", function(d) {return d.depth==0 ? 0 : 1000-d.depth;});
+
+	if(options.autodig) {
+		node.on('mouseout',function(d){
 			currentParentId = -1;
 			d3.select(this).attr("sable",0);
 			if(d3.select(this).style("opacity")!=0 && d3.select(this).attr("disapearing")!=1) {
@@ -213,12 +228,14 @@ var loadTreemap	= function(options) {
 				//d3.select(this).classed("mover",false).classed("mout",true);
 				reshowTheElem(d,d3.select(this));
 			}
-		})
-		.on('mouseover',function(d){
+		});
+		
+		node.on('mouseover',function(d){
 			currentParentId = d.parent.id;
-		})
-		.each(function(d){})
-		.on('mousemove', function(d) {
+		});
+		
+		//node.each(function(d){})
+		node.on('mousemove', function(d) {
 			if(d3.select(this).attr("disapearing")!=1) {
 				// count the mousemoves
 				var sab = parseInt(d3.select(this).attr("sable"));
@@ -229,12 +246,15 @@ var loadTreemap	= function(options) {
 					//d3.select(this).classed("mover",true).classed("mout",false);
 				}
 			}
-		})
-		.on("click", function(d) {
-			// hide current and show more depth
-			digTheElement(d,d3.select(this));
-			//d3.event.stopPropagation();			
-		})
+		});
+	}
+	
+	node.on("click", function(d) {
+		// hide current and show more depth
+		digTheElement(d,d3.select(this));
+		//d3.event.stopPropagation();			
+	});
+
 	var nodts = node.append("div")
 		.attr("class","child boxtext")
 		//.style("z-index", function(d) {return d.depth==0 ? 0 : 1001-d.depth;})
